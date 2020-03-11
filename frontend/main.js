@@ -4,6 +4,7 @@ window.addEventListener('load', function () {
     let placeElement = document.getElementById('place');
     let genderElement = document.getElementById('gender');
     let createButtonElement = document.getElementById('createbutton');
+    let getuserButtonElement = document.getElementById('getuserbutton');
     let outputElement = document.getElementById('output');
 
     createButtonElement.addEventListener('click', function () {
@@ -37,6 +38,19 @@ window.addEventListener('load', function () {
             })
             .then(function (data) {
                 outputElement.innerText = data.message;
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    })
+    getuserButtonElement.addEventListener('click', function () {
+        let url = '/getuserdetails';
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                outputElement.innerText = JSON.stringify(data);
             })
             .catch(function (error) {
                 console.log(error);
