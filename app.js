@@ -14,7 +14,7 @@ app.get('/getuserdetails', function (req, res, next) {
 
 app.post('/createuserdetails', function (req, res, next) {
     let user = req.body;
-    user.id = arr.length;
+    user.id = arr.length + 1;
     arr.push(user);
     res.send({
         "message": "user has been added sucessfully"
