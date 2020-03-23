@@ -5,28 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>userdetails</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        #headding {
+            background-color: aquamarine;
+            color: green;
+            padding: 20px;
+            text-align: center;
+            margin: 0px;
+        }
+
+        #form-section {
+            background-color: powderblue;
+            padding: 30px;
+            text-align: center;
+        }
+
+        #divTable {
+            padding: 20px;
+            background-color: salmon;
+        }
+    </style>
 </head>
 
+
 <body>
-    <input type="text" id="name" placeholder="*name">
-    <br>
-    <br>
-    <input type="text" id="age" placeholder="*age">
-    <br>
-    <br>
-    <input type="text" id="place" placeholder="place">
-    <br>
-    <br>
-    <input type="text" id="gender" placeholder="*gender">
-    <br>
-    <br>
-    <button id="createbutton">create</button>
-    <br>
-    <br>
-    <button id="getuserbutton">get</button>
-    <br>
-    <br>
-    <p id="output"></p>
+    <h1 id="headding">You can Insert and Delete Users from table</h1>
+    <section id="form-section">
+        <label>Name :</label><input type="text" id="name" placeholder="*name">
+        <br>
+        <br>
+        <label>Age :</label><input type="text" id="age" placeholder="*age">
+        <br>
+        <br>
+        <label>Location :</label><input type="text" id="place" placeholder="place">
+        <br>
+        <br>
+        <label>Gender :</label><input type="text" id="gender" placeholder="*gender">
+        <br>
+        <br>
+        <button id="createbutton">create</button>
+        <br>
+        <br>
+        <label>Id :</label><input type="text" id="deleteid" placeholder="*enter id to be deleted">
+        <br>
+        <br>
+        <button id="deleteuserbutton">delete user</button>
+        <br>
+        <br>
+        <p id="output"></p>
+    </section>
+
+
     <div id="divTable">
 
     </div>

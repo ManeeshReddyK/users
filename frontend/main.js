@@ -4,28 +4,31 @@ window.addEventListener('load', function () {
     let placeElement = document.getElementById('place');
     let genderElement = document.getElementById('gender');
     let createButtonElement = document.getElementById('createbutton');
-    let getuserButtonElement = document.getElementById('getuserbutton');
+    let deleteIdElement = document.getElementById('deleteid');
+    let deleteuserButtonElement = document.getElementById('deleteuserbutton');
+
     let outputElement = document.getElementById('output');
 
     createButtonElement.addEventListener('click', function () {
         let name = nameElement.value;
-        let age = ageElement.value;
+        let age = parseInt(ageElement.value);
         let place = placeElement.value;
         let gender = genderElement.value;
+
         if (name === '') {
             alert("please enter name");
             return;
         }
-        if (age === '') {
+
+        if (isNaN(age) && (age < 1 || age > 100)) {
             alert("please enter age");
             return;
         }
-        if (gender === '') {
-            alert("please enter gender");
+
+        if (gender.toLowerCase() !== "male" && gender.toLowerCase() !== "female") {
+            alert("please proper gender");
             return;
         }
-
-
         let bodyJSON = {
             'name': name,
             'age': age,
@@ -47,12 +50,21 @@ window.addEventListener('load', function () {
             })
             .then(function (data) {
                 outputElement.innerText = data.message;
+                setTimeout(function () {
+                    outputElement.innerText = '';
+                }, 3000);
+                nameElement.value = '';
+                ageElement.value = '';
+                placeElement.value = '';
+                genderElement.value = '';
+                getUser();
             })
             .catch(function (error) {
                 console.log(error);
             })
     })
-    getuserButtonElement.addEventListener('click', function () {
+
+    function getUser() {
         let url = '/getuserdetails';
         fetch(url)
             .then(function (response) {
@@ -61,8 +73,10 @@ window.addEventListener('load', function () {
             .then(function (data) {
 
                 var table = document.createElement("TABLE");
+                table.classList.add("table");
                 table.border = '1';
                 var row = table.insertRow(-1);
+                row.classList.add('thead-dark');
 
                 var nameThElement = createElement('TH', 'Name');
                 var ageThElement = createElement('TH', 'Age');
@@ -76,10 +90,11 @@ window.addEventListener('load', function () {
                 row.appendChild(locationThElement);
                 row.appendChild(genderThElement);
 
-
+                let classList = ['table-primary', 'table-secondary', "table-success", "table-danger", "table-warning"];
                 for (let i = 0; i < data.length; i++) {
                     row = table.insertRow(-1);
-
+                    row.style.color = "black";
+                    row.classList.add(classList[i % 5]);
                     var nameTdElement = createElement('TD', data[i].name);
                     var ageTdElement = createElement('TD', data[i].age);
                     var locationTdElement = createElement('TD', data[i].place);
@@ -103,6 +118,28 @@ window.addEventListener('load', function () {
                     element.innerText = value;
                     return element;
                 }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    deleteuserButtonElement.addEventListener('click', function () {
+        let id = deleteIdElement.value;
+        let url = '/deleteuserdetails?id=' + id;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                outputElement.innerText = data.message;
+                setTimeout(function () {
+                    outputElement.innerText = "";
+                }, 3000);
+                deleteIdElement.value = '';
+                getUser();
             })
             .catch(function (error) {
                 console.log(error);

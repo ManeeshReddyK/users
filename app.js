@@ -29,7 +29,7 @@ app.delete('/deleteuserdetails', function (req, res, next) {
         })
     }
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i].id == userid) {
+        if (arr[i].id === parseInt(userid)) {
             arr.splice(i, 1);
             return res.send({
                 "message": `user with id ${userid} has been deleted sucessfully!`
