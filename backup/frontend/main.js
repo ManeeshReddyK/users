@@ -10,8 +10,6 @@ window.addEventListener('load', function () {
 
     let outputElement = document.getElementById('output');
 
-    getUser();
-
     createButtonElement.addEventListener('click', function () {
         let name = nameElement.value;
         let age = parseInt(ageElement.value);
@@ -95,69 +93,52 @@ window.addEventListener('load', function () {
             })
             .then(function (data) {
 
-                if (data.success) {
-                    console.log('data :', data);
-                    data = data.data;
-                    console.log('data :', data);
-                    if (data.length > 0) {
-                        var table = document.createElement("TABLE");
-                        table.classList.add("table");
-                        table.border = '1';
-                        var row = table.insertRow(-1);
-                        row.classList.add('thead-dark');
+                var table = document.createElement("TABLE");
+                table.classList.add("table");
+                table.border = '1';
+                var row = table.insertRow(-1);
+                row.classList.add('thead-dark');
 
-                        var nameThElement = createElement('TH', 'Name');
-                        var ageThElement = createElement('TH', 'Age');
-                        var locationThElement = createElement('TH', 'Location');
-                        var genderThElement = createElement('TH', 'Gender');
-                        var idThElement = createElement('TH', 'Id');
+                var nameThElement = createElement('TH', 'Name');
+                var ageThElement = createElement('TH', 'Age');
+                var locationThElement = createElement('TH', 'Location');
+                var genderThElement = createElement('TH', 'Gender');
+                var idThElement = createElement('TH', 'Id');
 
-                        row.appendChild(idThElement);
-                        row.appendChild(nameThElement);
-                        row.appendChild(ageThElement);
-                        row.appendChild(locationThElement);
-                        row.appendChild(genderThElement);
+                row.appendChild(idThElement);
+                row.appendChild(nameThElement);
+                row.appendChild(ageThElement);
+                row.appendChild(locationThElement);
+                row.appendChild(genderThElement);
 
-                        let classList = ['table-primary', 'table-secondary', "table-success", "table-danger", "table-warning"];
-                        for (let i = 0; i < data.length; i++) {
-                            row = table.insertRow(-1);
-                            row.style.color = "black";
-                            row.classList.add(classList[i % 5]);
-                            var nameTdElement = createElement('TD', data[i].name);
-                            var ageTdElement = createElement('TD', data[i].age);
-                            var locationTdElement = createElement('TD', data[i].place);
-                            var genderTdElement = createElement('TD', data[i].gender);
-                            var idTdElement = createElement('TD', data[i].id);
+                let classList = ['table-primary', 'table-secondary', "table-success", "table-danger", "table-warning"];
+                for (let i = 0; i < data.length; i++) {
+                    row = table.insertRow(-1);
+                    row.style.color = "black";
+                    row.classList.add(classList[i % 5]);
+                    var nameTdElement = createElement('TD', data[i].name);
+                    var ageTdElement = createElement('TD', data[i].age);
+                    var locationTdElement = createElement('TD', data[i].place);
+                    var genderTdElement = createElement('TD', data[i].gender);
+                    var idTdElement = createElement('TD', data[i].id);
 
-                            row.appendChild(idTdElement);
-                            row.appendChild(nameTdElement);
-                            row.appendChild(ageTdElement);
-                            row.appendChild(locationTdElement);
-                            row.appendChild(genderTdElement);
+                    row.appendChild(idTdElement);
+                    row.appendChild(nameTdElement);
+                    row.appendChild(ageTdElement);
+                    row.appendChild(locationTdElement);
+                    row.appendChild(genderTdElement);
 
-                        }
-
-                        var divTable = document.getElementById("divTable");
-                        divTable.innerHTML = "";
-                        divTable.appendChild(table);
-
-                    }
-                    else {
-                        var divTable = document.getElementById("divTable");
-                        divTable.innerHTML = "";
-                    }
-
-                    function createElement(type, value) {
-                        var element = document.createElement(type);
-                        element.innerText = value;
-                        return element;
-                    }
-
-                } else {
-                    console.log('Error:', data.message);
                 }
 
+                var divTable = document.getElementById("divTable");
+                divTable.innerHTML = "";
+                divTable.appendChild(table);
 
+                function createElement(type, value) {
+                    var element = document.createElement(type);
+                    element.innerText = value;
+                    return element;
+                }
             })
             .catch(function (error) {
                 console.log(error);
